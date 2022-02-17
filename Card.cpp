@@ -6,3 +6,12 @@
 #include "Card.h"
 
 using namespace Euchre;
+
+Card::Card(int value, int suit){
+    this->Value = value;
+    this->Suit = suit;
+}
+
+char* Card::Describe(){
+    
+}

@@ -1,3 +1,6 @@
+#include "Team.h"
+#include "Deck.h"
+
 namespace Euchre
 {
     class Match{

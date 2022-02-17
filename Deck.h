@@ -1,3 +1,5 @@
+#include "Card.h"
+
 namespace Euchre
 {
     class Deck{
@@ -5,7 +7,7 @@ namespace Euchre
     public:
         void allocate();
         void add_cards();
-        Card get_card();
+        Card draw_card();
         Deck();
     };
 }

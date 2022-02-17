@@ -5,6 +5,6 @@ namespace Euchre
         int Suit;
         int Value;
         char* Describe();
-        Card();
+        Card(int value, int suit);
     };
 }
