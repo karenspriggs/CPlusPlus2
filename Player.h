@@ -1,12 +1,16 @@
+#pragma once;
+
 namespace Euchre
 {
     class Player{
     public:
         Card* hand;
-        int score;
-        Player()
-        void update_total(int value);
-        int make_choice();
-        int make_choice_dealer();
+        Player(){
+
+        }
+        void allocate_hand();
+        void update_score();
+        int choose_suit();
+        Card choose_card();
     };
 }

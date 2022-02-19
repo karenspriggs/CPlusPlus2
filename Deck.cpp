@@ -32,7 +32,7 @@ void Deck::add_cards(){
     }
 }
 
-// Drawing a card from deck
-Card Deck::draw_card(){
-    return cards[0];
+// Drawing a card from deck for us in for loop in match
+Card Deck::draw_card(int index){
+    return cards[index];
 }

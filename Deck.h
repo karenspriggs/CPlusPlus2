@@ -7,7 +7,7 @@ namespace Euchre
     public:
         void allocate();
         void add_cards();
-        Card draw_card();
+        Card draw_card(int index);
         Deck();
     };
 }
