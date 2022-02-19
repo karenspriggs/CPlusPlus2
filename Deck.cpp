@@ -4,12 +4,15 @@
 #include <ctime>
 #include <iostream>
 #include "Deck.h"
+#include "Player.h"
 
 using namespace Euchre;
 
 // Deck Class Constructor
 Deck::Deck(){
-
+    allocate();
+    add_cards();
+    shuffle();
 }
 
 // Allocating Memory
@@ -29,6 +32,18 @@ void Deck::add_cards(){
             //cards[index] = newcard;
             index++;
         }
+    }
+}
+
+void Deck::shuffle(){
+
+}
+
+void Deck::fill_hand(Player player, int index){
+    for (int i = 0; i < 6; i++){
+        int newindex = index + i;
+        Card newcard = cards[newindex];
+        player.add_card(newcard, index);
     }
 }
 

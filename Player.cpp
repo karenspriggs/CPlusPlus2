@@ -18,12 +18,15 @@ void Player::allocate_hand(){
     hand = (Card*)malloc(memory_size);
 }
 
-// Choosing a card to play (just returns the card)
-Card Player::choose_card(){
-
+void Player::add_card(Card card, int index){
+    hand[index] = card;
 }
 
-// Update players score based on tricks won
-void Player::update_score(){
-    this->score++;
+// Choosing a card to play (just returns the card)
+Card Player::choose_card(){
+    // Checking to see if the player has any cards of the trump suit
+    // Play highest card of trump suit
+    // Checking to see if the player has any cards of the preferred suit
+    // Play highest card of preferred suit
+    // Otherwise play highest card of any suit
 }
