@@ -38,7 +38,10 @@ void Match::fill_hands(){
 }
 
 void Match::play_round(){
-
+    one_player_play(player1);
+    one_player_play(player2);
+    one_player_play(player3);
+    one_player_play(player4);
 }
 
 void Match::make_teams(){
@@ -46,7 +49,10 @@ void Match::make_teams(){
 }
 
 void Match::play_game(){
-
+    for (int i = 0; i < 5; i++){
+        play_round();
+    }
+    end_game();
 }
 
 void Match::choose_suit(){
@@ -54,7 +60,15 @@ void Match::choose_suit(){
 }
 
 void Match::update_highest(Card c){
+    if (current_highest < c.Value){
+        current_highest = c.Value;
+    }
+}
 
+void Match::one_player_play(Player player){
+    Card playercard;
+    playercard = player.choose_card(chosen_suit, trump_suit);
+    update_highest(playercard);
 }
 
 void Match::end_game(){

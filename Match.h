@@ -24,6 +24,7 @@ namespace Euchre
         void make_teams();
         void play_round();
         void choose_suit();
+        void one_player_play(Player player);
         void update_highest(Card card);
         void play_game();
         void end_game();

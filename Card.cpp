@@ -12,6 +12,6 @@ Card::Card(int value, int suit){
     this->Suit = suit;
 }
 
-char* Card::Describe(){
+void Card::Describe(){
     
 }

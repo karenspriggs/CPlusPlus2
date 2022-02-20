@@ -4,9 +4,10 @@ namespace Euchre
 {
     class Card{
     public:
+        Card();
+        Card(int value, int suit);
         int Suit;
         int Value;
-        char* Describe();
-        Card(int value, int suit);
+        void Describe();
     };
 }
