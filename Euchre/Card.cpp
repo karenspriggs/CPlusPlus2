@@ -6,6 +6,7 @@
 #include "Card.h"
 
 using namespace Euchre;
+using namespace std;
 
 Card::Card(int value, int suit){
     this->Value = value;
@@ -13,5 +14,8 @@ Card::Card(int value, int suit){
 }
 
 void Card::Describe(){
-    
+    cout << "The card that was played was the ";
+    cout << Value;
+    cout << " of ";
+    cout << Suit;
 }
