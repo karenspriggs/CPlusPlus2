@@ -1,4 +1,4 @@
-#pragma once;
+#pragma once
 #include "Card.h"
 #include "Player.h"
 
@@ -10,7 +10,7 @@ namespace Euchre
         void shuffle();
         void allocate();
         void add_cards();
-        void fill_hand(Player player, int index);
+        void fill_hand(Player* player, int index);
         Card draw_card(int index);
         Deck();
     };

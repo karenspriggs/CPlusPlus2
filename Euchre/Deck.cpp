@@ -39,7 +39,7 @@ void Deck::shuffle(){
 
 }
 
-void Deck::fill_hand(Player player, int index){
+void Deck::fill_hand(Player* player, int index){
     for (int i = 0; i < 6; i++){
         int newindex = index + i;
         Card newcard = cards[newindex];
