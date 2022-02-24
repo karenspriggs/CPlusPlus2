@@ -45,7 +45,7 @@ void Match::play_round(){
 }
 
 void Match::make_teams(){
-
+    // Later on this will assign players to teams
 }
 
 void Match::play_game(){
