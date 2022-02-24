@@ -45,10 +45,11 @@ void Match::play_round(){
 }
 
 void Match::make_teams(){
-    // Later on this will assign players to teams
+    // Later on this will assign players to teams depe
 }
 
 void Match::play_game(){
+    setup();
     for (int i = 0; i < 5; i++){
         play_round();
     }
