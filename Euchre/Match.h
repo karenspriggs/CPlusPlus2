@@ -18,7 +18,7 @@ namespace Euchre
         Player player3;
         Player player4;
         Deck deck;
-        Match();
+        Match(){}
         void setup();
         void fill_hands();
         void make_teams();

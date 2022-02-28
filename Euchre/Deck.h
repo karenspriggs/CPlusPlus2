@@ -4,8 +4,8 @@
 
 namespace Euchre
 {
-    class Deck{
-    Card* cards;
+    class Deck {
+        Card cards[24];
     public:
         void shuffle();
         void allocate();
