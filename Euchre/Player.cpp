@@ -14,7 +14,7 @@ Player::Player() {
 
 // Allocating for Player's Hand
 void Player::allocate_hand() {
-    hand = new Card[5];
+    //hand = new Card[5];
 }
 
 void Player::add_card(int suit, int value, int index) {

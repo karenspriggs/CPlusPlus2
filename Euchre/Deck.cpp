@@ -17,7 +17,7 @@ Deck::Deck() {
 
 // Allocating Memory
 void Deck::allocate() {
-    cards = new Card[24];
+    //cards = new Card[24];
 }
 
 // Adding Cards to the Deck

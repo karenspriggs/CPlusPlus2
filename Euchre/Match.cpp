@@ -68,7 +68,8 @@ void Match::update_highest(Card c){
 
 void Match::one_player_play(Player player){
     Card playercard;
-    playercard = player.choose_card(chosen_suit, trump_suit);
+    // hardcoded highest played for now
+    playercard = player.choose_card(chosen_suit, trump_suit, false);
     update_highest(playercard);
 }
 
