@@ -3,7 +3,7 @@
 
 namespace Euchre
 {
-    class Team{
+    class Team {
     public:
         bool is_defender;
         bool played_trump;

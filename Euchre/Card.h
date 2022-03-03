@@ -2,12 +2,12 @@
 
 namespace Euchre
 {
-    class Card{
+    class Card {
     public:
         Card();
         Card(int value, int suit);
-        int Suit;
-        int Value;
+        int Suit = 0;
+        int Value = 0;
         void Describe();
     };
 }

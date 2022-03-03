@@ -7,49 +7,64 @@
 #include "Card.h"
 
 using namespace Euchre;
+using namespace std;
 
 Player::Player() {
-    allocate_hand();
-}
-
-// Allocating for Player's Hand
-void Player::allocate_hand() {
-    //hand = new Card[5];
+    
 }
 
 void Player::add_card(int suit, int value, int index) {
-    hand[index].Value = value;
     hand[index].Suit = suit;
+    hand[index].Value = value;
+    cout << "Index: ";
+    cout << index;
+    cout << "\nSuit: ";
+    cout << hand[index].Suit;
+    cout << "\nValue: ";
+    cout << hand[index].Value;
+    cout << "\n";
 }
 
 // Choosing a card to play (just returns the card)
-Card Player::choose_card(int currentsuit, int trumpsuit, bool partnerace) {
+int Player::choose_card(int currentsuit, int trumpsuit, bool partnerace) {
     Card card_to_play;
+    int ChosenSuit;
+    int ChosenValue;
+    int index;
+
     // Checking to see if the player has any cards of the trump suit
     // If partner has played an ace dont trump it
     if (check_for_trump(trumpsuit) && !partnerace) {
-        Card card_to_play = find_highest(trumpsuit);
-    }
-    else {
+        index = find_highest_suit_specific(trumpsuit);
+    } else {
         // Checking to see if the player has any cards of the current suit
         if (check_for_current(currentsuit)) {
-            Card card_to_play = find_highest(currentsuit);
+            index = find_highest_suit_specific(currentsuit);
         }
         else {
             // If they have neither, just find the highest other one
-            Card card_to_play = find_general_highest();
+            index = find_highest_index();
         }
     }
 
+    ChosenValue = hand[index].Value;
+    ChosenSuit = hand[index].Suit;
+
     // Remember to write something to remove the card from the list
-    card_to_play.Describe();
-    return card_to_play;
+    cout << "The card that was played was the ";
+    cout << ChosenValue;
+    cout << " of ";
+    cout << ChosenSuit;
+    cout << "\n";
+    //card_to_play.Describe();
+    return index;
 }
 
 
 bool Player::check_for_trump(int trumpsuit) {
-    for (int i = 0; i > 5; i++) {
-        if (hand[0].Suit == trumpsuit) {
+    // Checks to see if the player has a card from the trump suit
+    for (int i = 0; i < 5; i++) {
+        if (hand[i].Suit == trumpsuit && hand[i].Value != 1) {
             return true;
         }
     }
@@ -58,8 +73,9 @@ bool Player::check_for_trump(int trumpsuit) {
 }
 
 bool Player::check_for_current(int currentsuit) {
-    for (int i = 0; i > 5; i++) {
-        if (hand[0].Suit == currentsuit) {
+    // Check to see if the player has a card from the current chosen suit
+    for (int i = 0; i < 5; i++) {
+        if (hand[i].Suit == currentsuit && hand[i].Value != 1) {
             return true;
         }
     }
@@ -67,33 +83,59 @@ bool Player::check_for_current(int currentsuit) {
     return false;
 }
 
-Card Player::find_general_highest() {
+int Player::find_highest_index() {
     int current_highest_index = 0;
 
-    for (int i = 0; i > 5; i++) {
+    for (int i = 0; i < 5; i++) {
         if (hand[current_highest_index].Value <= hand[i].Value) {
             current_highest_index = i;
         }
     }
 
-    return hand[current_highest_index];
+    return current_highest_index;
 }
 
-Card Player::find_highest(int suit) {
+int Player::find_highest_suit_specific(int suit) {
     int current_highest_index = 0;
 
-    for (int i = 0; i > 5; i++) {
-        if (hand[0].Suit == suit) {
+    for (int i = 0; i < 5; i++) {
+        if (hand[i].Suit == suit) {
             if (hand[current_highest_index].Value <= hand[i].Value) {
                 current_highest_index = i;
             }
         }
     }
 
-    return hand[current_highest_index];
+    return current_highest_index;
+}
+
+int Player::find_general_highest() {
+    int highest_general = find_highest_index();
+
+    cout << "I checked the general highest \n";
+    cout << hand[highest_general].Value;
+
+    return hand[highest_general].Value;
+}
+
+int Player::find_highest(int suit) {
+    int suit_highest = find_highest_suit_specific(suit);
+
+    cout << "I checked the highest \n";
+    cout << hand[suit_highest].Value;
+
+    return hand[suit_highest].Value;
 }
 
 int Player::choose_trump(int amount) {
+    // Takes in a parameter because I want to see if anyone has 3 of something first and if nobody does
+    // I check for 2 etc
+    // The 4 is to check for something like this, since if it returns 4 when I'm checking for 3 of the 
+    // same card it means I have to check for 2 instead
+    // Also for checking for the other maker team member
+    // I assume players with a lot of cards with the same suit would want the trump to be that suit
+
+
     int result = 4;
     // 0 is clover, 1 is hearts, 2 is clubs, 3 is diamonds for card suits
     int clovers_count = 0;
@@ -101,7 +143,7 @@ int Player::choose_trump(int amount) {
     int clubs_count = 0;
     int diamonds_count = 0;
 
-    for (int i = 0; i > 5; i++) {
+    for (int i = 0; i < 5; i++) {
         switch (hand[i].Suit) {
         case(0):
             clovers_count++;
@@ -135,4 +177,9 @@ int Player::choose_trump(int amount) {
     }
 
     return result;
+}
+
+void Player::remove_card_from_hand(int index) {
+    // Basically make the value so low that it will never be chosen again
+    hand[index].Value = 1;
 }

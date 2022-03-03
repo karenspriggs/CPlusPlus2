@@ -8,9 +8,8 @@ namespace Euchre
         Card cards[24];
     public:
         void shuffle();
-        void allocate();
         void add_cards();
-        void fill_hand(Player player, int index);
+        void fill_hand(Player& player, int index);
         Card draw_card(int index);
         Deck();
     };
