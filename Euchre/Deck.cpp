@@ -3,8 +3,10 @@
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
+
 #include "Deck.h"
 #include "Player.h"
+#include "Shuffler.h"
 
 using namespace Euchre;
 using namespace std;
@@ -12,6 +14,7 @@ using namespace std;
 // Deck Class Constructor
 Deck::Deck() {
     add_cards();
+    shuffle();
     shuffle();
 }
 
@@ -38,34 +41,7 @@ void Deck::add_cards() {
 }
 
 void Deck::shuffle() {
-    // For loop so it goes through "every" element in the deck shh
-    // Generate new random index and then save the values of the card at the new one
-    // Replace values of second card with first card
-    // Repeat
-    int newSuit = 0;
-    int newValue = 0;
-
-    int oldSuit = 0;
-    int oldValue = 0;
-    int index = 23;
-    
-    for (int i = 0; i < 24; i++) {
-        oldSuit = cards[i].Suit;
-        oldValue = cards[i].Value;
-
-        // Can't use random like this or else you get copies of cards
-        // Figure out a better way
-        //int index = rand() % 24;
-        int newSuit = cards[index].Suit;
-        int newValue = cards[index].Value;
-
-        cards[i].Suit = newSuit;
-        cards[i].Value = newValue;
-        index--;
-    }
-
-    //cout << index;
-    //cout << indexNew;
+    shuffler.shuffleElement(cards, 24);
 }
 
 void Deck::fill_hand(Player& player, int index) {
@@ -83,3 +59,4 @@ void Deck::fill_hand(Player& player, int index) {
 Card Deck::draw_card(int index) {
     return cards[index];
 }
+
