@@ -35,14 +35,17 @@ int Player::choose_card(int currentsuit, int trumpsuit, bool partnerace) {
     // Checking to see if the player has any cards of the trump suit
     // If partner has played an ace dont trump it
     if (check_for_trump(trumpsuit) && !partnerace) {
+        cout << "I played a card of the trump suit\n";
         index = find_highest_suit_specific(trumpsuit);
     } else {
         // Checking to see if the player has any cards of the current suit
         if (check_for_current(currentsuit)) {
+            cout << "I played a card of the chosen suit\n";
             index = find_highest_suit_specific(currentsuit);
         }
         else {
             // If they have neither, just find the highest other one
+            cout << "\nI played a card of some other suit\n";
             index = find_highest_index();
         }
     }
@@ -65,6 +68,7 @@ bool Player::check_for_trump(int trumpsuit) {
     // Checks to see if the player has a card from the trump suit
     for (int i = 0; i < 5; i++) {
         if (hand[i].Suit == trumpsuit && hand[i].Value != 1) {
+            cout << "\nI found a card of the trump suit\n";
             return true;
         }
     }
@@ -76,6 +80,7 @@ bool Player::check_for_current(int currentsuit) {
     // Check to see if the player has a card from the current chosen suit
     for (int i = 0; i < 5; i++) {
         if (hand[i].Suit == currentsuit && hand[i].Value != 1) {
+            cout << "\nI found a card of the chosen suit\n";
             return true;
         }
     }
@@ -107,24 +112,6 @@ int Player::find_highest_suit_specific(int suit) {
     }
 
     return current_highest_index;
-}
-
-int Player::find_general_highest() {
-    int highest_general = find_highest_index();
-
-    cout << "I checked the general highest \n";
-    cout << hand[highest_general].Value;
-
-    return hand[highest_general].Value;
-}
-
-int Player::find_highest(int suit) {
-    int suit_highest = find_highest_suit_specific(suit);
-
-    cout << "I checked the highest \n";
-    cout << hand[suit_highest].Value;
-
-    return hand[suit_highest].Value;
 }
 
 int Player::choose_trump(int amount) {

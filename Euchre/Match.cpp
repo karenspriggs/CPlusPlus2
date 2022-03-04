@@ -52,10 +52,17 @@ void Match::play_round() {
     
     cout << "\nPlayer four's move:\n";
     one_player_play(player4);
+
+    show_results();
 }
 
-void Match::make_teams() {
+void Match::add_member_to_team(Player player, Team team) {
     // Later on this will assign players to teams depending on if they chose trump idk
+}
+
+void Match::determine_trump() {
+    // Each player takes turns running choose trump with 3 as an argument if any of them return anything other than 4 add them to the makers
+    // Then do the same with 2 as an argument first to not do 4 is on the makers too, rest go to defenders
 }
 
 void Match::play_game() {
@@ -63,6 +70,8 @@ void Match::play_game() {
     // Plays five rounds
     for (int i = 0; i < 5; i++) {
         play_round();
+        current_player_id = 0;
+        current_highest = 0;
     }
     end_game();
     deck.shuffle();
@@ -72,20 +81,48 @@ void Match::choose_suit() {
     trump_suit = 0;
 }
 
-void Match::update_highest(Card c) {
-    if (current_highest < c.Value) {
-        current_highest = c.Value;
+void Match::update_highest_value(int value, int suit) {
+    current_player_id++;
+
+    if (current_highest < value && (overwrite_highest_value_suit(current_highest_suit, suit))) {
+        current_highest = value;
+        player_highest = current_player_id;
     }
 }
 
-void Match::one_player_play(Player& player) {
-    int playercard_index;
+bool Match::overwrite_highest_value_suit(int suit1, int suit2) {
+    // In the case where two cards have the same value, this will 
+    // determine which one wins (does card 2 win over card 1?)
 
-    // hardcoded highest played for now to test
-    playercard_index = player.choose_card(chosen_suit, trump_suit, false);
+    // Existing highest card is trump and new one isnt, return false
+    if (suit1 == trump_suit && suit2 != trump_suit) {
+        return false;
+    }
+    else {
+        // Old one is a chosen suit and the new one isnt a trump, return false
+        if (suit1 == chosen_suit && suit2 != trump_suit) {
+            return false;
+        }
+    }
+
+    // Otherwise the new one beats the old one
+    return true;
+}
+
+void Match::one_player_play(Player& player) {
+    int playercard_index = player.choose_card(chosen_suit, trump_suit, false);
     Card playercard = player.hand[playercard_index];
-    update_highest(playercard);
+    int playervalue = playercard.Value;
+    int playersuit = playercard.Suit;
+
+    update_highest_value(playervalue, playersuit);
     player.remove_card_from_hand(playercard_index);
+}
+
+void Match::show_results() {
+    cout << "\nPlayer ";
+    cout << player_highest;
+    cout << " won the hand!\n";
 }
 
 void Match::end_game() {

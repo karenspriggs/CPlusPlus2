@@ -27,19 +27,36 @@ bool Team::check_win(int score) {
     return false;
 }
 
-void Team::add_player(Player p) {
-    // Add player to team by copying over all their shit? idk
-    // Doesn't work like C#
+void Team::add_player(Player p, int playerID) {
+    if (playerID == 1) {
+        player1 = p;
+    }
+    else {
+        player2 = p;
+    }
 }
 
-void one_team_player_play(Player player) {
+Card Team::team_players_play(int playerID, int chosen_suit, int trump_suit) {
+    bool aceplayed = (highest_played == 14);
     Card playercard;
-    // Have to get the player one working 100% for this one to get started
-    // 
-    //  This checks to see if the other team member played an ace
-    // bool aceplayed = (highest_played == 14);
-    // playercard = player.choose_card(chosen_suit, trump_suit, aceplayed);
-    // 
-    // cant trump a partners ace: if curent team highest is 13 then they have to do a non trump
-    // Check if highest played is 0, if so then set it equal to the played card value
+
+    if (playerID == 1) {
+        Card playercard = one_player_team_play(player1, chosen_suit, trump_suit, aceplayed);
+    }
+    else {
+        Card playercard = one_player_team_play(player2, chosen_suit, trump_suit, aceplayed);
+    }
+}
+
+Card Team::one_player_team_play(Player& player, int playerID, int chosen_suit, int trump_suit) {
+    int playercard_index = player.choose_card(chosen_suit, trump_suit, false);
+    Card playercard = player.hand[playercard_index];
+    int playervalue = playercard.Value;
+
+    update_highest_value(playervalue);
+    player.remove_card_from_hand(playercard_index);
+}
+
+void Team::update_highest_value(int playervalue) {
+    highest_played = playervalue;
 }

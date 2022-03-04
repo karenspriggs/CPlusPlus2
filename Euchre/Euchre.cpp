@@ -10,12 +10,12 @@ using namespace Euchre;
 
 Match* match = new Match();
 
-void play_hundred(){
-    for (int i = 0; i < 100; i++){
+void play_hundred() {
+    for (int i = 0; i < 100; i++) {
         match->play_game();
     }
 }
 
-int main(){
+int main() {
     match->play_game();
 }
