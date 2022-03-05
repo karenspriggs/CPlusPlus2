@@ -37,6 +37,7 @@ void Team::add_player(Player& p, int playerID) {
 }
 
 int Team::team_players_play(int playerID, int chosen_suit, int trump_suit) {
+    // Don't trump a teammates ace according to google lol
     aceplayed = (highest_played == 14);
     int playercardindex;
 
@@ -71,6 +72,7 @@ int Team::one_player_team_play(int playerID, int chosen_suit, int trump_suit) {
 }
 
 void Team::remove_card_at_index(int playerID, int index) {
+    // Removing card at an index that words with teams
 
     if (playerID == 1) {
         player1.remove_card_from_hand(index);
@@ -85,6 +87,7 @@ void Team::update_highest_value(int playervalue) {
 }
 
 Card Team::return_card_at_index(int playerID, int index) {
+    // So we can get the card instance at the index if we need to
     Card playercard;
 
     if (playerID == 1) {

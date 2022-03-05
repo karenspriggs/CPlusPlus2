@@ -17,5 +17,7 @@ void play_hundred() {
 }
 
 int main() {
-    match->play_game();
+    //match->play_game();
+    // Run this to feel like a nuke has gone off in the console
+    play_hundred();
 }

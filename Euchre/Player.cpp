@@ -16,6 +16,9 @@ Player::Player() {
 void Player::add_card(int suit, int value, int index) {
     hand[index].Suit = suit;
     hand[index].Value = value;
+
+    // Following prints helped me make sure cards were being added as intended
+    /**
     cout << "Index: ";
     cout << index;
     cout << "\nSuit: ";
@@ -23,6 +26,7 @@ void Player::add_card(int suit, int value, int index) {
     cout << "\nValue: ";
     cout << hand[index].Value;
     cout << "\n";
+    **/
 }
 
 // Choosing a card to play (just returns the card)
@@ -50,16 +54,16 @@ int Player::choose_card(int currentsuit, int trumpsuit, bool partnerace) {
         }
     }
 
+    // Save the suit and value of the card played
     ChosenValue = hand[index].Value;
     ChosenSuit = hand[index].Suit;
 
-    // Remember to write something to remove the card from the list
     cout << "The card that was played was the ";
     cout << ChosenValue;
     cout << " of ";
     cout << ChosenSuit;
     cout << "\n";
-    //card_to_play.Describe();
+    
     return index;
 }
 
@@ -89,6 +93,8 @@ bool Player::check_for_current(int currentsuit) {
 }
 
 int Player::find_highest_index() {
+    // Self explanatory
+
     int current_highest_index = 0;
 
     for (int i = 0; i < 5; i++) {
@@ -101,6 +107,8 @@ int Player::find_highest_index() {
 }
 
 int Player::find_highest_suit_specific(int suit) {
+    // Like the above one but only for specific suits
+
     int current_highest_index = 0;
 
     for (int i = 0; i < 5; i++) {

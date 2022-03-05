@@ -20,6 +20,7 @@ namespace Euchre
         int current_highest_suit = 5;
         int player_highest = 0;
         int current_player_id = 0;
+        int highest_player_id = 0;
         bool defenders_won = false;
         bool player_one_chosen = false;
         bool player_two_chosen = false;
@@ -33,13 +34,13 @@ namespace Euchre
         Player find_second_maker();
         void make_defenders();
         void play_round();
-        void choose_suit();
         void one_player_play(Player& player);
         void one_player_on_team_play(int playerID, int teamID);
         Card get_card_from_team(int teamID, int playerID, int index);
         void update_highest_value(int value, int suit);
         bool overwrite_highest_value_suit(int suit1, int suit2);
         void play_game();
+        void update_results();
         void show_results();
         void end_game();
     };
