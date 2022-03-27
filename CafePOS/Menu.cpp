@@ -3,6 +3,14 @@
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
-#include "Item.h"
+#include "Menu.h"
 
 using namespace CafePOS;
+
+Menu::Menu(){
+    setup();
+}
+
+void Menu::setup(){
+    
+}

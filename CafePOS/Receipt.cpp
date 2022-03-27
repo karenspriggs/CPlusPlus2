@@ -3,5 +3,6 @@
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
-#include <menu.h>
+#include "Receipt.h"
+
 using namespace CafePOS;
