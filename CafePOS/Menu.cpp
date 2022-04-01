@@ -5,6 +5,8 @@
 #include <iostream>
 #include "Menu.h"
 
+using namespace CafePOS;
+
 Menu::Menu() {
     setup();
     print_menu();
@@ -49,19 +51,29 @@ void Menu::add_item(Receipt& r, Item i) {
 void Menu::order(Receipt& r) {
     bool still_ordering = true;
     int index = 0;
+    int amount = 0;
 
     while (still_ordering) {
-        cout << "Enter the number for the item you want to add to your order\n";
+        cout << "Enter the number for the item you want to add to your order:\n";
         cout << "Enter 0 when you want to stop ordering.\n";
         cin >> selected_item;
         index = selected_item;
 
         if (index != 0) {
-            cout << "You selected an ";
+            cout << "Now enter the quantity you would like: ";
+            cin >> amount;
+
+            for (int i = 0; i < amount; i++) {
+                add_item(r, MenuList[index]);
+                r.current_total += MenuList[index].Price;
+            }
+
+            cout << "You selected ";
+            cout << amount;
+            cout << " ";
             cout << MenuList[index].Name;
             cout << "\n";
-            add_item(r, MenuList[index]);
-            r.current_total += MenuList[index].Price;
+
             //cout << r.current_total;
         }
         else {

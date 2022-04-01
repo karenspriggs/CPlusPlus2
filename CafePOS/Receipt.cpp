@@ -4,5 +4,3 @@
 #include <ctime>
 #include <iostream>
 #include "Receipt.h"
-
-using namespace CafePOS;

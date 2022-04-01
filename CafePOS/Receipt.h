@@ -3,8 +3,11 @@
 #include<list> 
 
 using namespace std;  
-class Receipt {
-public:
+
+namespace CafePOS{
+    class Receipt {
+    public:
     double current_total = 0.00;
     list<Item> itemsPurchased;
-};
+    };
+}

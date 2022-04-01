@@ -7,6 +7,8 @@
 #include "Receipt.h"
 #include "ChangeManager.h"
 
+using namespace CafePOS;
+
 Menu menu;
 Receipt receipt;
 ChangeManager changemanager;

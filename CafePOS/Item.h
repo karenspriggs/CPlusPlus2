@@ -1,10 +1,13 @@
+#pragma once
+using namespace std;
+
 namespace CafePOS{
-    class Item{
-        public:
-        char Name[10];
+    class Item {
+    public:
+        string Name;
         double Price;
         Item();
-        Item(char name[], double price);
+        Item(string name, double price);
         void Describe();
     };
 }

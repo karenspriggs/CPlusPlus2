@@ -5,6 +5,7 @@
 #include <iostream>
 #include "ChangeManager.h"
 
+using namespace CafePOS;
 using namespace std;
 
 ChangeManager::ChangeManager() {
