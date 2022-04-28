@@ -9,7 +9,7 @@
 std::vector<Restaurant> restaurant_cases;
 std::string fileaddress;
 
-void parse_csv_to_case(Restaurant restaurant, std::stringstream row) {
+void parse_csv_to_case(Restaurant restaurant, std::stringstream& row) {
     int index = 0;
     std::string lineinfo;
 
@@ -19,6 +19,10 @@ void parse_csv_to_case(Restaurant restaurant, std::stringstream row) {
         index++;
     }
 
+    std::cout << "Case parsed";
+
+    restaurant.print_data();
+
     restaurant_cases.push_back(restaurant);
 }  
 
@@ -27,7 +31,6 @@ void parse_file( ) {
     std::vector<std::string> temprow;
     std::string row;
     
-
     sourcefile.open(fileaddress);
 
     if (sourcefile.is_open()) {
@@ -38,11 +41,15 @@ void parse_file( ) {
 
             Restaurant r;
             parse_csv_to_case(r, s);
+            row.clear();
         }
+
+        sourcefile.close();
+    }
+    else {
+        std::cout << "File is closed or not found";
     }
 }
-
-
 
 int main()
 {
