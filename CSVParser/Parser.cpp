@@ -53,7 +53,7 @@ void parse_file( ) {
 
 int main()
 {
-    fileaddress = ".../testfile.csv";
+    fileaddress = "Food_Inspections.csv";
     parse_file();
 }
 
