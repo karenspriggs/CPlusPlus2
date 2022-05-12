@@ -4,9 +4,14 @@
 #include <string>
 #include <vector>
 #include <cstdlib>
+#include <map>
+#include <algorithm>
+
 #include "Restaurant.h";
+#include "LocationData.h"
 
 std::vector<Restaurant> restaurant_cases;
+std::vector<LocationData> sorted_data;
 std::string fileaddress;
 
 void parse_csv_to_case(Restaurant restaurant, std::stringstream& row) {
@@ -36,7 +41,6 @@ void parse_file( ) {
     if (sourcefile.is_open()) {
         while (sourcefile.good()) {
             getline(sourcefile, row);
-
             std::stringstream s(row);
 
             Restaurant r;
@@ -51,9 +55,35 @@ void parse_file( ) {
     }
 }
 
+void sort_file() {
+    std::map<int, LocationData> ZipCodeData;
+
+    for (Restaurant& restaurantcase : restaurant_cases) {
+        if (!ZipCodeData.count(restaurantcase.ZipCode)) {
+            ZipCodeData.insert(std::pair<int, LocationData>(restaurantcase.ZipCode, LocationData(restaurantcase.ZipCode)));
+        }
+
+        sorted_data.at((restaurantcase.ZipCode)).AnalyzeCase(restaurantcase);
+    }
+
+    for (auto I = ZipCodeData.begin(); I != ZipCodeData.end(); I++) {
+        sorted_data.push_back(I->second);
+    }
+
+    std::sort(sorted_data.begin(), sorted_data.end());
+}
+
+void print_results() {
+
+}
+
 int main()
 {
     fileaddress = "Food_Inspections.csv";
+
     parse_file();
+    sort_file();
+
+    print_results();
 }
 
