@@ -24,26 +24,6 @@ struct Date {
 		Year = newyear;
 	}
 
-	bool CompareDate(Date& otherDate) {
-		if (Year > otherDate.Year) {
-			return true;
-		}
-
-		if (Month > otherDate.Month) {
-			return true;
-		}
-
-		if (Year < otherDate.Year) {
-			return false;
-		}
-		
-		if (Month < otherDate.Month) {
-			return false;
-		}
-
-		return Day > otherDate.Day;
-	}
-
 	std::string DateToString() {
 		return std::to_string(Day) + "of" + std::to_string(Month) + "of" + std::to_string(Year);
 	}

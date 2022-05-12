@@ -14,11 +14,11 @@ void LocationData::AnalyzeCase(Restaurant& restaurantcase) {
 
 void LocationData::ConvertDate(std::string dateString) {
 	std::string Data;
-	auto thischar = --dateString.end();
+	auto currentchar = --dateString.end();
 
-	while (*thischar != '/') {
-		Data += *thischar;
-		thischar--;
+	while (*currentchar != '/') {
+		Data += *currentchar;
+		currentchar--;
 	}
 
 	std::reverse(Data.begin(), Data.end());
@@ -30,11 +30,11 @@ void LocationData::ConvertDate(std::string dateString) {
 
 	Data.clear();
 
-	thischar = --dateString.begin();
+	currentchar = --dateString.begin();
 
-	while (*thischar != '/') {
-		Data += *thischar;
-		thischar++;
+	while (*currentchar != '/') {
+		Data += *currentchar;
+		currentchar++;
 	}
 
 	int NewMonth = std::stoi(Data);
@@ -45,9 +45,9 @@ void LocationData::ConvertDate(std::string dateString) {
 
 	Data.clear();
 
-	while (*thischar != '/') {
-		Data += *thischar;
-		thischar++;
+	while (*currentchar != '/') {
+		Data += *currentchar;
+		currentchar++;
 	}
 	
 	int NewDay = std::stoi(Data);
