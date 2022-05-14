@@ -74,7 +74,14 @@ void sort_file() {
 }
 
 void print_results() {
-
+    for (LocationData& locationdata : sorted_data){
+        std::cout << "ZIP Code:";
+        std::cout << locationdata.GetZip();
+        std::cout << "\nFailure Count:";
+        std::cout << locationdata.GetFailureCount();
+        std::cout << "\nDate of Last Failure:";
+        std::cout << locationdata.GetDateString();
+    }
 }
 
 int main()

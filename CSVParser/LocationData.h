@@ -41,6 +41,10 @@ public:
 		FailureCount = 0;
 	}
 
+	int GetZip(){return ZipCode;}
+	int GetFailureCount(){return FailureCount;}
+	std::string GetDateString(){return InspectionDate.DateToString();}
+
 	void AnalyzeCase(Restaurant& restaurantcase);
 	void ConvertDate(std::string dateString);
 };
